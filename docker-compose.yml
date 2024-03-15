@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  exoid-backend:
+    container_name: exoid-backend
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: npm run start
+    environment:
+      - DB_HOST:
+      - DB_NAME:
+      - DB_USERNAME:
+      - DB_PASSWORD:
+      - DB_PORT:3306
+    ports:
+      - 3001:3001
+    volumes:
+      - .:/user/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
